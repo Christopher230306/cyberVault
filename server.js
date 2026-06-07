@@ -6,7 +6,7 @@ const shortid = require('shortid');
 
 const app = express();
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 
 if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads');
@@ -18,22 +18,23 @@ const storage = multer.diskStorage({
         cb(null, shortid.generate() + '-' + file.originalname);
     }
 });
+
 const upload = multer({ storage });
 
 app.use(express.static('public'));
 
 app.post('/upload', upload.single('file'), (req, res) => {
     if (!req.file) return res.status(400).send('No file uploaded.');
-    
+
     const downloadLink = `${req.protocol}://${req.get('host')}/download/${req.file.filename}`;
-    
+
     setTimeout(() => {
         const filePath = path.join(__dirname, 'uploads', req.file.filename);
         if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
             console.log(`⏰ Timer Expired: ${req.file.filename} deleted.`);
         }
-    }, 60 * 60 * 1000); 
+    }, 60 * 60 * 1000);
 
     res.json({ downloadLink });
 });
