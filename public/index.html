@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-site-verification" content="s3pPFM9rgSHd4a4m0a9g6J_KxtZpgenRBaFk9DN8r98" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberVault | One-Time File Share</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 CyberVault</h1>
+    <p>Self-destructing file sharing. One link. One download.</p>
+    <div class="upload-box" id="drop-zone">
+      <input type="file" id="fileInput" hidden>
+      <label for="fileInput" class="btn-primary">Choose File</label>
+      <p id="file-name">or drag & drop here</p>
+      <div class="progress-container"><div id="progressBar"></div></div>
+    </div>
+    <div id="result-area" class="hidden">
+      <p>Your secure link is ready:</p>
+      <div class="copy-box">
+        <input type="text" id="shareLink" readonly>
+        <button onclick="copyLink()">Copy</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
